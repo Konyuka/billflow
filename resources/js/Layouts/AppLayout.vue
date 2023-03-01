@@ -1,10 +1,14 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 
 defineProps({
     title: String,
 });
+
+const currentRoute = computed(()=>{
+    return route().current()
+})
 
 
 const profileMenu = ref(false)
@@ -30,30 +34,31 @@ const logout = () => {
                     </div>
                     <div class="mt-6 w-full flex-1 space-y-1 px-2">
                         <!-- Current: "bg-indigo-800 text-white", Default: "text-indigo-100 hover:bg-indigo-800 hover:text-white" -->
-                        <a href="#"
-                            class="text-indigo-100 hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium">
+                        <Link :href="route('dashboard')"
+                            :class="currentRoute == 'dashboard' ? 'bg-indigo-800' : '' "  class="text-indigo-100 hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium">
                             <i class="fas fa-home fa-2x"></i>
                             <span class="mt-2">Home</span>
-                        </a>
+                        </Link>
 
-                        <a href="#"
-                            class="text-indigo-100 hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium">
+                        <Link :href="route('dashboard.business')"
+                            :class="currentRoute == 'dashboard.business' ? 'bg-indigo-800' : ''"  class="text-indigo-100 hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium">
                             <i class="fas fa-business-time fa-2x"></i>
                             <span class="mt-2">Business</span>
-                        </a>
+                        </Link>
 
-                        <a href="#"
-                            class="bg-indigo-800 text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium"
+                        <Link :href="route('dashboard.accounting')"
+                            :class="currentRoute == 'dashboard.accounting' ? 'bg-indigo-800' : ''" class="text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium"
                             aria-current="page">
                             <i class="fas fa-calculator fa-2x"></i>
                             <span class="mt-2">Accounting</span>
-                        </a>
+                        </Link>
 
-                        <a href="#"
-                            class="text-indigo-100 hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium">
+                        <Link :href="route('dashboard.contacts')"
+                            :class="currentRoute == 'dashboard.contacts' ? 'bg-indigo-800' : ''" class="text-indigo-100 hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium">
                             <i class="fas fa-address-book fa-2x"></i>
                             <span class="mt-2">Contacts</span>
-                        </a>
+                        </Link>
+
                     </div>
                 </div>
             </div>
@@ -212,20 +217,17 @@ const logout = () => {
                                     role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                                     tabindex="-1">
                                     <!-- Active: "bg-gray-100", Not Active: "" -->
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                        tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                                    <Link :href="route('profile.show')" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                        tabindex="-1" id="user-menu-item-0">Your Profile</Link>
 
                                     <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
                                         tabindex="-1" id="user-menu-item-1">Sign out</a>
                                 </div>
                             </div>
 
-                            <button type="button"
-                                class="flex items-center justify-center rounded-full bg-indigo-600 p-1 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                </svg>
+                            <button @click="logout" type="button"
+                                class="flex items-center justify-center rounded-full bg-indigo-600 p-2 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                <i class="fas fa-power-off"></i>
                                 <span class="sr-only">Log Out</span>
                             </button>
                         </div>
@@ -239,15 +241,17 @@ const logout = () => {
                     <!-- Primary column -->
                     <section aria-labelledby="primary-heading"
                         class="flex h-full min-w-0 flex-1 flex-col lg:order-last">
-                        <h1 id="primary-heading" class="sr-only">Photos</h1>
-                        <!-- Your content -->
+                        <h1 id="primary-heading" class="sr-only">Content</h1>
+                        <slot />
                     </section>
                 </main>
 
                 <!-- Secondary column (hidden on smaller screens) -->
-                <aside class="hidden w-56 overflow-y-auto border-l border-gray-200 bg-white lg:block">
+                <aside v-if="currentRoute!='dashboard'" class="hidden w-52 overflow-y-auto border-l border-gray-200 bg-white lg:block">
                     <!-- Your content -->
                 </aside>
+
+
             </div>
         </div>
     </div>

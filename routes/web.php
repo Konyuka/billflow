@@ -19,7 +19,20 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::get('/dashboard/business', function () {
+        return Inertia::render('Dash/Business');
+    })->name('dashboard.business');
+
+    Route::get('/dashboard/accounting', function () {
+        return Inertia::render('Dash/Accounting');
+    })->name('dashboard.accounting');
+
+    Route::get('/dashboard/contacts', function () {
+        return Inertia::render('Dash/Contacts');
+    })->name('dashboard.contacts');
 });

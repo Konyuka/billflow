@@ -10,9 +10,9 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <link href="fa/fontawesome-free-6.3.0-web/css/fontawesome.css" rel="stylesheet">
-        <link href="fa/fontawesome-free-6.3.0-web/css/brands.css" rel="stylesheet">
-        <link href="fa/fontawesome-free-6.3.0-web/css/solid.css" rel="stylesheet">
+        <link href="/fa/fontawesome-free-6.3.0-web/css/fontawesome.css" rel="stylesheet">
+        <link href="/fa/fontawesome-free-6.3.0-web/css/brands.css" rel="stylesheet">
+        <link href="/fa/fontawesome-free-6.3.0-web/css/solid.css" rel="stylesheet">
         
     
         <!-- Scripts -->
