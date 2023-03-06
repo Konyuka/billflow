@@ -28,11 +28,29 @@ Route::middleware([
         return Inertia::render('Dash/Business');
     })->name('dashboard.business');
 
+    Route::get('/dashboard/employees', function () {
+        return Inertia::render('Dash/Employees');
+    })->name('dashboard.employees');
+
     Route::get('/dashboard/accounting', function () {
         return Inertia::render('Dash/Accounting');
     })->name('dashboard.accounting');
 
-    Route::get('/dashboard/contacts', function () {
-        return Inertia::render('Dash/Contacts');
-    })->name('dashboard.contacts');
+    Route::get('/dashboard/banking', function () {
+        return Inertia::render('Dash/Banking');
+    })->name('dashboard.banking');
+
+    Route::get('/dashboard/clients', function () {
+        return Inertia::render('Dash/Clients');
+    })->name('dashboard.clients');
+
+    Route::get('/dashboard/tax', function () {
+        return Inertia::render('Dash/Tax');
+    })->name('dashboard.tax');
+
+    Route::get('/dashboard/reports', function () {
+        return Inertia::render('Dash/Reports');
+    })->name('dashboard.reports');
+
 });
+

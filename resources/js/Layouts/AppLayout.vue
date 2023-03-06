@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
+import BusinessMenus from '@/Pages/Dash/BusinessComponents/BusinessMenus.vue';
 
 defineProps({
     title: String,
@@ -46,6 +47,12 @@ const logout = () => {
                             <span class="mt-2">Business</span>
                         </Link>
 
+                        <Link :href="route('dashboard.employees')"
+                            :class="currentRoute == 'dashboard.employees' ? 'bg-indigo-800' : ''"  class="text-indigo-100 hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium">
+                            <i class="fas fa-users fa-2x"></i>
+                            <span class="mt-2">Employees</span>
+                        </Link>
+
                         <Link :href="route('dashboard.accounting')"
                             :class="currentRoute == 'dashboard.accounting' ? 'bg-indigo-800' : ''" class="text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium"
                             aria-current="page">
@@ -53,10 +60,29 @@ const logout = () => {
                             <span class="mt-2">Accounting</span>
                         </Link>
 
-                        <Link :href="route('dashboard.contacts')"
-                            :class="currentRoute == 'dashboard.contacts' ? 'bg-indigo-800' : ''" class="text-indigo-100 hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium">
+                        <Link :href="route('dashboard.banking')"
+                            :class="currentRoute == 'dashboard.banking' ? 'bg-indigo-800' : ''" class="text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium"
+                            aria-current="page">
+                            <i class="fas fa-piggy-bank fa-2x"></i>
+                            <span class="mt-2">Banking</span>
+                        </Link>
+
+                        <Link :href="route('dashboard.clients')"
+                            :class="currentRoute == 'dashboard.clients' ? 'bg-indigo-800' : ''" class="text-indigo-100 hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium">
                             <i class="fas fa-address-book fa-2x"></i>
-                            <span class="mt-2">Contacts</span>
+                            <span class="mt-2">Clients</span>
+                        </Link>
+
+                        <Link :href="route('dashboard.tax')"
+                            :class="currentRoute == 'dashboard.tax' ? 'bg-indigo-800' : ''" class="text-indigo-100 hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium">
+                            <i class="fas fa-address-book fa-2x"></i>
+                            <span class="mt-2">Tax</span>
+                        </Link>
+
+                        <Link :href="route('dashboard.reports')"
+                            :class="currentRoute == 'dashboard.reports' ? 'bg-indigo-800' : ''" class="text-indigo-100 hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium">
+                            <i class="fas fa-book-open fa-2x"></i>
+                            <span class="mt-2">Reports</span>
                         </Link>
 
                     </div>
@@ -248,7 +274,7 @@ const logout = () => {
 
                 <!-- Secondary column (hidden on smaller screens) -->
                 <aside v-if="currentRoute!='dashboard'" class="hidden w-52 overflow-y-auto border-l border-gray-200 bg-white lg:block">
-                    <!-- Your content -->
+                    <BusinessMenus v-if="currentRoute=='dashboard.business'" />
                 </aside>
 
 
