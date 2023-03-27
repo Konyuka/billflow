@@ -13,7 +13,7 @@
         <link href="/fa/fontawesome-free-6.3.0-web/css/fontawesome.css" rel="stylesheet">
         <link href="/fa/fontawesome-free-6.3.0-web/css/brands.css" rel="stylesheet">
         <link href="/fa/fontawesome-free-6.3.0-web/css/solid.css" rel="stylesheet">
-        
+        {{-- check --}}
     
         <!-- Scripts -->
         @routes
